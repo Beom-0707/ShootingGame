@@ -21,7 +21,7 @@
 #define p 112
 
 // FRAME & GAME
-#define MAIN_X 25 // Size of X of Frame
+#define MAIN_X 33 // Size of X of Frame
 #define MAIN_Y 27 // Size of Y of Frame
 #define MAIN_X_ADJ 3
 #define MAIN_Y_ADJ 1
