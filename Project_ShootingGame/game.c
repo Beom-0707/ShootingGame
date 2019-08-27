@@ -12,7 +12,6 @@ int checkHit(int n) {
 			monster[i].flagHit = true;
 			monster[i].hp -= bullet[n].power - monster[i].armor;
 			if (monster[i].hp <= 0) {
-				monster[i].flagSurv = false;
 				mainFrame[monster[i].my][monster[i].mx] = EMPTY;
 				--countSurvMonster;
 				switch (monster[i].level) {
@@ -208,6 +207,43 @@ void createMonster() {
 	case STAGE_4:
 		break;
 	case STAGE_5:
+		defMonster(0, 16, 1, LEVEL_4, HP_MONSTER_4, POWER_MONSTER_4, ARMOR_MONSTER_1, false, true);
+		++countSurvMonster;
+		mainFrame[monster[0].my][monster[0].mx] = MONSTER;
+
+		defMonster(1, 11, 2, LEVEL_3, HP_MONSTER_3, POWER_MONSTER_3, ARMOR_MONSTER_1, false, true);
+		++countSurvMonster;
+		mainFrame[monster[1].my][monster[1].mx] = MONSTER;
+		defMonster(2, 21, 2, LEVEL_3, HP_MONSTER_3, POWER_MONSTER_3, ARMOR_MONSTER_1, false, true);
+		++countSurvMonster;
+		mainFrame[monster[2].my][monster[2].mx] = MONSTER;
+
+		defMonster(3, 8, 6, LEVEL_2, HP_MONSTER_2, POWER_MONSTER_2, ARMOR_MONSTER_1, false, true);
+		++countSurvMonster;
+		mainFrame[monster[3].my][monster[3].mx] = MONSTER;
+		defMonster(4, 24, 6, LEVEL_2, HP_MONSTER_2, POWER_MONSTER_2, ARMOR_MONSTER_1, false, true);
+		++countSurvMonster;
+		mainFrame[monster[4].my][monster[4].mx] = MONSTER;
+		defMonster(5, 15, 7, LEVEL_2, HP_MONSTER_2, POWER_MONSTER_2, ARMOR_MONSTER_1, false, true);
+		++countSurvMonster;
+		mainFrame[monster[5].my][monster[5].mx] = MONSTER;
+		defMonster(6, 17, 7, LEVEL_2, HP_MONSTER_2, POWER_MONSTER_2, ARMOR_MONSTER_1, false, true);
+		++countSurvMonster;
+		mainFrame[monster[6].my][monster[6].mx] = MONSTER;
+
+		defMonster(7, 6, 3, LEVEL_1, HP_MONSTER_1, POWER_MONSTER_2, ARMOR_MONSTER_1, false, true);
+		++countSurvMonster;
+		mainFrame[monster[7].my][monster[7].mx] = MONSTER;
+		defMonster(8, 26, 3, LEVEL_1, HP_MONSTER_1, POWER_MONSTER_2, ARMOR_MONSTER_1, false, true);
+		++countSurvMonster;
+		mainFrame[monster[8].my][monster[8].mx] = MONSTER;
+		defMonster(9, 11, 8, LEVEL_1, HP_MONSTER_1, POWER_MONSTER_2, ARMOR_MONSTER_1, false, true);
+		++countSurvMonster;
+		mainFrame[monster[9].my][monster[9].mx] = MONSTER;
+		defMonster(10, 21, 8, LEVEL_1, HP_MONSTER_1, POWER_MONSTER_2, ARMOR_MONSTER_1, false, true);
+		++countSurvMonster;
+		mainFrame[monster[10].my][monster[10].mx] = MONSTER;
+
 		break;
 	}
 }
@@ -757,7 +793,7 @@ void reset() {
 	// Player
 	defPlayer(MAIN_X / 2, MAIN_Y - 4, 100, 100, 0, 0);
 	key = 0;
-	stage = STAGE_1;
+	stage = STAGE_5;
 	score = 0;
 
 	// Bullet
@@ -869,7 +905,7 @@ void drawMap() {
 	gotoxy(x, y + 3);
 	printf("弛 BULLET LEVEL :           %d弛 ", levelBullet);
 	gotoxy(x, y + 4);
-	printf("弛 SURVIVE MONSTER :        %d弛 ", countSurvMonster);
+	printf("弛 SURVIVE MONSTER :       %2d弛 ", countSurvMonster);
 	gotoxy(x, y + 5);
 	printf("戌式式式式式式式式式式式式式式式式式式式式式式式式式式式戎 ");
 	gotoxy(x, y + 6);
