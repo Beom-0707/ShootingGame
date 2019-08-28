@@ -32,7 +32,7 @@ int main() {
 		
 
 		checkKbhit();
-		//createLaser();
+		createLaser();
 
 		//moveMonster();
 		while (frameTime > 0.0) {
@@ -40,7 +40,7 @@ int main() {
 
 			moveBullet();
 			moveGLaser();
-			//moveLaser();
+			moveLaser();
 
 
 
@@ -74,6 +74,7 @@ int main() {
 			drawMF();
 		}
 
+		drawBoss();
 		drawMF();
 		drawMap();
    	}

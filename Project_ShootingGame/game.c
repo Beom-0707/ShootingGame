@@ -265,6 +265,20 @@ void moveMonster() {
 	}
 }
 
+void drawBoss() {
+	for (int i = 0; i < BOSS_Y; ++i) {
+		for (int j = 0; j < BOSS_X - 1; ++j) {
+			gotoxy(MAIN_X_ADJ + j + 4, MAIN_Y_ADJ + i + 1);
+			switch (boss[i][j]) {
+			case '1':
+				printf("▦");
+				break;
+			}
+
+		}
+	}
+}
+
 
 
 // Function of Laser
@@ -603,7 +617,7 @@ void reset() {
 	// Player
 	defPlayer(MAIN_X / 2, MAIN_Y - 4, 100, 100, 0, 0);
 	key = 0;
-	stage = STAGE_1;
+	stage = STAGE_5;
 	score = 0;
 
 	// Bullet
@@ -615,6 +629,21 @@ void reset() {
 	for (int i = 0; i < MAX_BULLET; ++i)
 		bullet[i].flagShot = false;
 	// Monster
+	strcpy(boss[0],  "0010001010100010101000100");
+	strcpy(boss[1],  "0101001010100010101001010");
+	strcpy(boss[2],  "1000101010100010101010001");
+	strcpy(boss[3],  "1000101010100010101010001");
+	strcpy(boss[4],  "1000100100011100010010001");
+	strcpy(boss[5],  "0101010000000000000101010");
+	strcpy(boss[6],  "0010001110000000111000100");
+	strcpy(boss[7],  "0010010001000001000100100");
+	strcpy(boss[8],  "0001100000100010000011000");
+	strcpy(boss[9],  "0000010001111111000100000");
+	strcpy(boss[10], "0000001110000000111000000");
+	strcpy(boss[11], "0000000111111111110000000");
+
+
+
 	movePos[0] = -1;
 	movePos[1] = 0;
 	movePos[2] = 1;
@@ -748,15 +777,15 @@ void drawMap() {
 void result() { // 1. 점수, 2. 스테이지, 3. 플레이타임
 	int x = MAIN_X_ADJ;
 	int y = MAIN_Y_ADJ;
-	gotoxy(x + 2, y + 8);
+	gotoxy(x + 10, y + 8);
 	printf("┌───────────────────┐ ");
-	gotoxy(x + 2, y + 9);
+	gotoxy(x + 10, y + 9);
 	printf("│  SCORE :    %4d  │ ", score);
-	gotoxy(x + 2, y + 10);
+	gotoxy(x + 10, y + 10);
 	printf("│  STAGE :    %4d  │ ", stage);
-	gotoxy(x + 2, y + 11);
+	gotoxy(x + 10, y + 11);
 	printf("│  TIME  : %2dm %2ds  │ ", ((int)t / CLOCKS_PER_SEC) / 60, ((int)t / CLOCKS_PER_SEC) % 60);
-	gotoxy(x + 2, y + 12);
+	gotoxy(x + 10, y + 12);
 	printf("└───────────────────┘ ");
 
 

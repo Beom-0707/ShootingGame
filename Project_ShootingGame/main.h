@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 #include <Windows.h>
 #include <conio.h>
@@ -86,14 +87,17 @@
 #define ARMOR_MONSTER_4 150
 #define ARMOR_MONSTER_5 200
 
+#define BOSS_X 26
+#define BOSS_Y 12
+
 // LASER
 #define MAX_LASER 200
-#define SPEED_LASER 8
-#define PROB_ATTACK_LEVEL_1 1
-#define PROB_ATTACK_LEVEL_2 1
-#define PROB_ATTACK_LEVEL_3 1
-#define PROB_ATTACK_LEVEL_4 1
-#define PROB_ATTACK_LEVEL_5 1
+#define SPEED_LASER 10
+#define PROB_ATTACK_LEVEL_1 5
+#define PROB_ATTACK_LEVEL_2 5
+#define PROB_ATTACK_LEVEL_3 5
+#define PROB_ATTACK_LEVEL_4 5
+#define PROB_ATTACK_LEVEL_5 5
 #define PROB_MAKE_BLOCK 5
 #define LEFT_LASER 1
 #define MID_LASER 0
@@ -159,6 +163,8 @@ typedef struct _Bullet{
 Bullet bullet[MAX_BULLET];
 
 // Monster
+char boss[BOSS_Y][BOSS_X];
+
 int movePos[3];
 int countSurvMonster;
 

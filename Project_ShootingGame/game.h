@@ -20,7 +20,7 @@ void defMonster(int n, int mx, int my, int level, int hp, int power, int armor, 
 void createMonster();
 int checkHit(int n);
 
-
+void drawBoss();
 
 // Function of Laser
 void stackGaugeLaser();
