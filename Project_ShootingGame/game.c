@@ -272,7 +272,6 @@ void stackGaugeLaser() {
 	for (int i = 0; i < MAX_LASER; ++i) {
 		if (laser[i].flagShot == false) continue;
 
-
 		laser[i].gaugeX += SPEED_LASER * deltaTime / CLOCKS_PER_SEC;
 		laser[i].gaugeY += SPEED_LASER * deltaTime / CLOCKS_PER_SEC;
 		if (laser[i].gaugeX >= 1) {
@@ -497,197 +496,6 @@ void moveLaser() {
 			}
 			break;
 		}
-
-
-
-		/*
-		switch (laser[i].level) {
-		case LEVEL_1:
-
-
-			if (laser[i].flagFirst == true) { // 첫발인 경우
-				mainFrame[(int)laser[i].ly][(int)laser[i].lx] = LASER;
-				laser[i].flagFirst = false;
-				continue;
-			}
-			if (checkCrush((int)laser[i].lx, (int)laser[i].ly + 1) == true) {
-				mainFrame[(int)laser[i].ly][(int)laser[i].lx] = EMPTY;
-				++laser[i].ly;
-				mainFrame[(int)laser[i].ly][(int)laser[i].lx] = LASER;
-			}
-			else {
-				if (stage >= STAGE_1) {
-					convBlock(i, PROB_MAKE_BLOCK);
-					break;
-				}
-				resetLaser(i);
-			}
-
-			break;
-		case LEVEL_2:
-			if (laser[i].stackX == 0 && laser[i].stackY == 0) continue;
-			--laser[i].stackX;
-			--laser[i].stackY;
-
-			if (laser[i].flagFirst == true) { // 첫발인 경우
-				mainFrame[(int)laser[i].ly][(int)laser[i].lx] = LASER;
-				laser[i].flagFirst = false;
-				if ((int)laser[i].lx == 1 && laser[i].direct == LEFT_LASER) laser[i].direct = RIGHT_LASER;
-				else if ((int)laser[i].lx == MAIN_X - 2 && laser[i].direct == RIGHT_LASER) laser[i].direct = LEFT_LASER;
-				continue;
-			}
-
-			if (laser[i].direct == LEFT_LASER) { // 좌
-				if (checkCrush((int)laser[i].lx - 1, (int)laser[i].ly + 1) == true) {
-					mainFrame[(int)laser[i].ly][(int)laser[i].lx] = EMPTY;
-					--laser[i].lx;
-					++laser[i].ly;
-					mainFrame[(int)laser[i].ly][(int)laser[i].lx] = LASER;
-
-					if ((int)laser[i].lx == 1) laser[i].direct = RIGHT_LASER;
-				}
-				else {
-					if (stage >= STAGE_1) {
-						convBlock(i, PROB_MAKE_BLOCK);
-						break;
-					}
-					resetLaser(i);
-				}
-			}
-			else if (laser[i].direct == RIGHT_LASER) { // 우
-				if (checkCrush((int)laser[i].lx + 1, (int)laser[i].ly + 1) == true) {
-					mainFrame[(int)laser[i].ly][(int)laser[i].lx] = EMPTY;
-					++laser[i].ly;
-					++laser[i].lx;
-					mainFrame[(int)laser[i].ly][(int)laser[i].lx] = LASER;
-
-					if ((int)laser[i].lx == MAIN_X - 2) laser[i].direct = LEFT_LASER;
-
-				}
-				else {
-					if (stage >= STAGE_1) {
-						convBlock(i, PROB_MAKE_BLOCK);
-						break;
-					}
-					resetLaser(i);
-				}
-			}
-
-			break;
-		case LEVEL_3:
-			if (laser[i].stackX == 0 || laser[i].stackY == 0) continue;
-			--laser[i].stackX;
-			--laser[i].stackY;
-			if (laser[i].flagFirst == true) { // 첫발인 경우
-				mainFrame[(int)laser[i].ly][(int)laser[i].lx] = LASER;
-				laser[i].flagFirst = false;
-				if ((int)laser[i].lx == 1 && laser[i].direct == LEFT_LASER) laser[i].direct = RIGHT_LASER;
-				else if ((int)laser[i].lx == MAIN_X - 2 && laser[i].direct == RIGHT_LASER) laser[i].direct = LEFT_LASER;
-				continue;
-			}
-			if (laser[i].direct == LEFT_LASER) { // 좌
-				if (checkCrush((int)laser[i].lx - 1, (int)laser[i].ly + 1) == true) {
-					mainFrame[(int)laser[i].ly][(int)laser[i].lx] = EMPTY;
-					--laser[i].lx;
-					++laser[i].ly;
-					mainFrame[(int)laser[i].ly][(int)laser[i].lx] = LASER;
-
-					if ((int)laser[i].lx == 1) laser[i].direct = RIGHT_LASER;
-				}
-				else {
-					if (stage >= STAGE_1) {
-						convBlock(i, PROB_MAKE_BLOCK);
-						break;
-					}
-					resetLaser(i);
-				}
-			}
-			else if (laser[i].direct == RIGHT_LASER) { // 우
-				if (checkCrush((int)laser[i].lx + 1, (int)laser[i].ly + 1) == true) {
-					mainFrame[(int)laser[i].ly][(int)laser[i].lx] = EMPTY;
-					++laser[i].lx;
-					++laser[i].ly;
-					mainFrame[(int)laser[i].ly][(int)laser[i].lx] = LASER;
-
-					if ((int)laser[i].lx == MAIN_X - 2) laser[i].direct = LEFT_LASER;
-
-				}
-				else {
-					if (stage >= STAGE_1) {
-						convBlock(i, PROB_MAKE_BLOCK);
-						break;
-					}
-					resetLaser(i);
-				}
-			}
-			break;
-		case LEVEL_4:
-			if (laser[i].flagFirst == true) { // 첫발인 경우
-				mainFrame[(int)laser[i].ly][(int)laser[i].lx] = LASER;
-				laser[i].flagFirst = false;
-				if ((int)laser[i].lx == 1 && laser[i].direct == LEFT_LASER) laser[i].direct = RIGHT_LASER;
-				else if ((int)laser[i].lx == MAIN_X - 2 && laser[i].direct == RIGHT_LASER) laser[i].direct = LEFT_LASER;
-				continue;
-			}
-			if (laser[i].direct == MID_LASER) { // 중
-				if (checkCrush((int)laser[i].lx, (int)laser[i].ly + 1) == true) {
-					mainFrame[(int)laser[i].ly][(int)laser[i].lx] = EMPTY;
-					++laser[i].ly;
-					mainFrame[(int)laser[i].ly][(int)laser[i].lx] = LASER;
-				}
-				else {
-					
-					if (stage >= STAGE_1) {
-						convBlock(i, PROB_MAKE_BLOCK);
-						break;
-					}
-					
-					resetLaser(i);
-				}
-			}
-			else if (laser[i].direct == LEFT_LASER) { // 좌
-				if (checkCrush((int)laser[i].lx - 1, (int)laser[i].ly + 1) == true) {
-					mainFrame[(int)laser[i].ly][(int)laser[i].lx] = EMPTY;
-					--laser[i].lx;
-					++laser[i].ly;
-					mainFrame[(int)laser[i].ly][(int)laser[i].lx] = LASER;
-
-					if ((int)laser[i].lx == 1) laser[i].direct = RIGHT_LASER;
-				}
-				else {
-					
-					if (stage >= STAGE_1) {
-						convBlock(i, PROB_MAKE_BLOCK);
-						break;
-					}
-					
-					resetLaser(i);
-
-				}
-			}
-			else if (laser[i].direct == RIGHT_LASER) { // 우
-				if (checkCrush((int)laser[i].lx + 1, (int)laser[i].ly + 1) == true) {
-					mainFrame[(int)laser[i].ly][(int)laser[i].lx] = EMPTY;
-					++laser[i].lx;
-					++laser[i].ly;
-					mainFrame[(int)laser[i].ly][(int)laser[i].lx] = LASER;
-
-					if ((int)laser[i].lx == MAIN_X - 2) laser[i].direct = LEFT_LASER;
-
-				}
-				else {
-					
-					if (stage >= STAGE_1) {
-						convBlock(i, PROB_MAKE_BLOCK);
-						break;
-					}
-					
-					resetLaser(i);
-				}
-			}
-			break;
-		}
-		*/
 	}
 }
 void resetLaser(int n) {
@@ -699,9 +507,8 @@ void resetLaser(int n) {
 	laser[n].stackY = 0;
 }
 void convBlock(int n, int prob) {
-	if (rand() % 100 + 1 > prob) {
+	if (rand() % 100 + 1 > prob)
 		resetLaser(n);
-	}
 	else {
 		mainFrame[(int)laser[n].ly][(int)laser[n].lx] = WALL;
 		defLaser(n, 0, 0, 0, 0, false, true);
@@ -713,15 +520,15 @@ void stackGaugeGLaser() {
 	for (int i = 0; i < MAX_GLASER; ++i) {
 		if (gLaser[i].flagSurv == false) continue;
 
-		laser[i].gaugeX += SPEED_GLASER * deltaTime / CLOCKS_PER_SEC;
-		laser[i].gaugeY += SPEED_GLASER * deltaTime / CLOCKS_PER_SEC;
-		if (laser[i].gaugeX >= 1) {
-			--laser[i].gaugeX;
-			++laser[i].stackX;
+		gLaser[i].gaugeX += SPEED_GLASER * deltaTime / CLOCKS_PER_SEC;
+		gLaser[i].gaugeY += SPEED_GLASER * deltaTime / CLOCKS_PER_SEC;
+		if (gLaser[i].gaugeX >= 1) {
+			--gLaser[i].gaugeX;
+			++gLaser[i].stackX;
 		}
-		if (laser[i].gaugeX >= 1) {
-			--laser[i].gaugeY;
-			++laser[i].stackY;
+		if (gLaser[i].gaugeY >= 1) {
+			--gLaser[i].gaugeY;
+			++gLaser[i].stackY;
 		}
 	}
 }
@@ -756,21 +563,22 @@ void moveGLaser() {
 	for (int i = 0; i < MAX_GLASER; ++i) {
 		if (gLaser[i].flagSurv == false) continue;
 		if (gLaser[i].gmx == player.px && gLaser[i].gmy == player.py) continue;
-		
+		if (gLaser[i].stackX == 0 || gLaser[i].stackY == 0) continue;
+
 		// x
 		if (getDegree((double)(player.px - gLaser[i].gmx), (double)(player.py - gLaser[i].gmy)) >= 22.5 * 13 ||
 			(getDegree((double)(player.px - gLaser[i].gmx), (double)(player.py - gLaser[i].gmy)) >= 22.5 * 0 && getDegree((double)(player.px - gLaser[i].gmx), (double)(player.py - gLaser[i].gmy)) <= 22.5 * 3))
-			tempx = SPEED_GLASER * deltaTime / CLOCKS_PER_SEC;
+			tempx = 1;
 		else if (getDegree((double)(player.px - gLaser[i].gmx), (double)(player.py - gLaser[i].gmy)) >= 22.5 * 5 &&
 			getDegree((double)(player.px - gLaser[i].gmx), (double)(player.py - gLaser[i].gmy)) <= 22.5 * 11)
-			tempx = -SPEED_GLASER * deltaTime / CLOCKS_PER_SEC;
+			tempx = -1;
 		else tempx = 0;
 
 		// y
 		if (getDegree((double)(player.px - gLaser[i].gmx), (double)(player.py - gLaser[i].gmy)) >= 22.5 * 1 &&
-			getDegree((double)(player.px - gLaser[i].gmx), (double)(player.py - gLaser[i].gmy)) <= 22.5 * 7) tempy = SPEED_GLASER * deltaTime / CLOCKS_PER_SEC;
+			getDegree((double)(player.px - gLaser[i].gmx), (double)(player.py - gLaser[i].gmy)) <= 22.5 * 7) tempy = 1;
 		else if (getDegree((double)(player.px - gLaser[i].gmx), (double)(player.py - gLaser[i].gmy)) >= 22.5 * 9 &&
-			getDegree((double)(player.px - gLaser[i].gmx), (double)(player.py - gLaser[i].gmy)) <= 22.5 * 15) tempy = -SPEED_GLASER * deltaTime / CLOCKS_PER_SEC;
+			getDegree((double)(player.px - gLaser[i].gmx), (double)(player.py - gLaser[i].gmy)) <= 22.5 * 15) tempy = -1;
 		else tempy = 0;
 
 		if (checkCrush(gLaser[i].gmx + tempx, gLaser[i].gmy + tempy) == true) {
@@ -778,6 +586,8 @@ void moveGLaser() {
 			gLaser[i].gmx += tempx;
 			gLaser[i].gmy += tempy;
 			mainFrame[(int)gLaser[i].gmy][(int)gLaser[i].gmx] = GLASER;
+			--gLaser[i].stackX;
+			--gLaser[i].stackY;
 		}
 	}
 }
@@ -793,7 +603,7 @@ void reset() {
 	// Player
 	defPlayer(MAIN_X / 2, MAIN_Y - 4, 100, 100, 0, 0);
 	key = 0;
-	stage = STAGE_5;
+	stage = STAGE_1;
 	score = 0;
 
 	// Bullet

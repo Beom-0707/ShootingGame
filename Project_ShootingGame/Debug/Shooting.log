@@ -5,10 +5,10 @@ c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\game.c(53
   c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\conio.h(453): note: 'getch' 선언을 참조하십시오.
 c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\game.c(55): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _getch. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\conio.h(453): note: 'getch' 선언을 참조하십시오.
-c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\game.c(777): warning C4244: '함수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\game.c(850): warning C4013: 'gotoxy'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\game.c(954): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _getch. See online help for details.
+c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\game.c(588): warning C4244: '함수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\game.c(663): warning C4013: 'gotoxy'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\game.c(767): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _getch. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\conio.h(453): note: 'getch' 선언을 참조하십시오.
-c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\game.c(973): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _getch. See online help for details.
+c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\game.c(786): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _getch. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\conio.h(453): note: 'getch' 선언을 참조하십시오.
   Shooting.vcxproj -> C:\Users\USER\source\repos\Beom-0707\ShootingGame\Project_ShootingGame\Debug\Shooting.exe
