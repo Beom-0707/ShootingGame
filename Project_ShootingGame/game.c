@@ -30,6 +30,8 @@ int checkHit(int n) {
 				}
 				defMonster(i, 0, 0, 0, 0, 0, 0, false, false);
 			}
+			else
+				mainFrame[monster[i].my][monster[i].mx] = MONSTER;
 			return true;
 		}
 	}
@@ -148,7 +150,8 @@ void moveBullet() {
 			mainFrame[(int)bullet[i].by][(int)bullet[i].bx] = BULLET;
 			bullet[i].flagFirst = false;
 			if (checkHit(i) == true) {
-				mainFrame[(int)bullet[i].by][(int)bullet[i].bx] = EMPTY;
+				// if this code below works monster will disappear when the one doesn't move and hit bullet.
+				//mainFrame[(int)bullet[i].by][(int)bullet[i].bx] = EMPTY;
 				defBullet(i, 0, 0, 0, 0, false);
 				--countShotBullet;
 			}
@@ -165,7 +168,8 @@ void moveBullet() {
 			--countShotBullet;
 		}
 		if (checkHit(i) == true) {
-			mainFrame[(int)bullet[i].by][(int)bullet[i].bx] = EMPTY;
+			// if this code below works monster will disappear when the one doesn't move and hit bullet.
+			//mainFrame[(int)bullet[i].by][(int)bullet[i].bx] = EMPTY;
 			defBullet(i, 0, 0, 0, 0, false);
 			--countShotBullet;
 		}
