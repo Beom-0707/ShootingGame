@@ -74,7 +74,7 @@ int main() {
 			drawMF();
 		}
 
-		drawBoss();
+		//drawBoss();
 		drawMF();
 		drawMap();
    	}

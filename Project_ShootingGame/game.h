@@ -36,6 +36,12 @@ void defGLaser(int n, double gmx, double gmy, int flagSurv);
 void createGLaser();
 void moveGLaser();
 
+// Function of Item
+void stackGaugeItem();
+void defItem(int n, int ix, int iy, int flagOn);
+void spawnItem();
+void moveItem();
+
 // Function of Frame
 void reset();
 void resetMF(); // Set MainFrame

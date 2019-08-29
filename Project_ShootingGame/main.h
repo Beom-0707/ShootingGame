@@ -52,6 +52,11 @@
 #define EMPTY 0
 #define MONSTER -1
 #define PLAYER -2
+#define ITEM_HP -3
+#define ITEM_ARMOR -4
+#define ITEM_BULLET -5
+#define ITEM_ULTI -6
+
 
 
 // BULLET
@@ -103,8 +108,21 @@
 #define MID_LASER 0
 #define RIGHT_LASER -1
 
+// GLASER
 #define MAX_GLASER 1
 #define SPEED_GLASER 10
+
+// ITEM
+#define MAX_ITEM 5
+#define SPEED_ITEM 1
+#define PROB_SPAWN_ITEM 10
+
+// PERCENTAGE : ULTI < ARMOR < HP < BULLET
+// THESE CONSTANTS ARE CUMULATIVE FREQUENCYS
+#define PROB_SPAWN_ITEM_BULLET 100 // 65
+#define PROB_SPAWN_ITEM_HP 35 // 20
+#define PROB_SPAWN_ITEM_ARMOR 15 // 10
+#define PROB_SPAWN_ITEM_ULTI 5 // 5
 
 // T/F
 #define true 1
@@ -114,6 +132,8 @@
 //--------------------------------------
 // Variable & Array & Struct
 //--------------------------------------
+
+typedef int bool;
 
 // Frame
 int mainFrame[MAIN_Y][MAIN_X];
@@ -190,30 +210,39 @@ int levelLaser;
 
 
 typedef struct _Laser {
-	double gaugeX;
-	double gaugeY;
-	int stackX;
-	int stackY;
-	double lx;
-	double ly;
+	double gauge;
+	int stack;
+
+	int lx;
+	int ly;
 
 	int level;
 	int direct;
 
-	int flagShot;
-	int flagFirst;
+	bool flagShot;
+	bool flagFirst;
 } Laser;
 Laser laser[MAX_LASER];	
 
 
 typedef struct _GuidedMonster {
-	double gaugeX;
-	double gaugeY;
-	int stackX;
-	int stackY;
-	double gmx;
-	double gmy;
+	double gauge;
+	int stack;
+	int gmx;
+	int gmy;
 
-	int flagSurv;
+	bool flagSurv;
 } GuidedMonster;
 GuidedMonster gLaser[MAX_GLASER];
+
+// Item
+typedef struct _Item{
+	double gauge;
+	int stack;
+	int ix;
+	int iy;
+
+	bool flagSurv;
+
+} Item;
+Item item[MAX_ITEM];

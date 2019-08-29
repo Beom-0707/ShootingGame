@@ -28,6 +28,7 @@ int checkHit(int n) {
 					score += 200;
 					break;
 				}
+				spawnItem(monster[i].mx, monster[i].my);
 				defMonster(i, 0, 0, 0, 0, 0, 0, false, false);
 			}
 			else
@@ -289,24 +290,20 @@ void drawBoss() {
 void stackGaugeLaser() {
 	for (int i = 0; i < MAX_LASER; ++i) {
 		if (laser[i].flagShot == false) continue;
-
-		laser[i].gaugeX += SPEED_LASER * deltaTime / CLOCKS_PER_SEC;
-		laser[i].gaugeY += SPEED_LASER * deltaTime / CLOCKS_PER_SEC;
-		if (laser[i].gaugeX >= 1) {
-			--laser[i].gaugeX;
-			++laser[i].stackX;
-		}
-		if (laser[i].gaugeY >= 1) {
-			--laser[i].gaugeY;
-			++laser[i].stackY;
+		laser[i].gauge += SPEED_LASER * deltaTime / CLOCKS_PER_SEC;
+		if (laser[i].gauge >= 1) {
+			laser[i].gauge -= 1;
+			laser[i].stack += 1;
 		}
 	}
 }
-void defLaser(int n, double lx, double ly, int level, int direct, int flagShot, int flagFirst) {
+void defLaser(int n, int lx, int ly, int level, int direct, double gauge, int stack, bool flagShot, bool flagFirst) {
 	laser[n].lx = lx;
 	laser[n].ly = ly;
 	laser[n].level = level;
 	laser[n].direct = direct;
+	laser[n].gauge = gauge;
+	laser[n].stack = stack;
 	laser[n].flagShot = flagShot;
 	laser[n].flagFirst = flagFirst;
 }
@@ -326,7 +323,7 @@ void createLaser() {
 				if (checkCrush(monster[i].mx, monster[i].my + 1) == true) flagMid = true;
 				if (flagMid == false) break;
 				if (rand() % 100 + 1 > PROB_ATTACK_LEVEL_1) break;
-				defLaser(j, monster[i].mx, monster[i].my + 1, monster[i].level, MID_LASER, true, true);
+				defLaser(j, monster[i].mx, monster[i].my + 1, monster[i].level, MID_LASER, 0.0, 0, true, true);
 				
 				break;
 			case LEVEL_2:
@@ -338,21 +335,17 @@ void createLaser() {
 				if (rand() % 100 + 1 > PROB_ATTACK_LEVEL_2) break;
 
 				if (flagLeft == true && flagRight == false) { // LEFT
-					//if (checkCrush(monster[i].mx - 1, monster[i].my + 1) == false) break;
-					defLaser(j, monster[i].mx - 1, monster[i].my + 1, monster[i].level, LEFT_LASER, true, true);
+					defLaser(j, monster[i].mx - 1, monster[i].my + 1, monster[i].level, LEFT_LASER, 0.0, 0, true, true);
 				}
 				else if (flagLeft == false && flagRight == true) { // RIGHT
-					//if (checkCrush(monster[i].mx + 1, monster[i].my + 1) == false) break;
-					defLaser(j, monster[i].mx + 1, monster[i].my + 1, monster[i].level, RIGHT_LASER, true, true);
+					defLaser(j, monster[i].mx + 1, monster[i].my + 1, monster[i].level, RIGHT_LASER, 0.0, 0, true, true);
 				}
 				else { // LEFT OR RIGHT
 					if (rand() % 100 + 1 > 50) { // LEFT
-						//if (checkCrush(monster[i].mx - 1, monster[i].my + 1) == false) break;
-						defLaser(j, monster[i].mx - 1, monster[i].my + 1, monster[i].level, LEFT_LASER, true, true);
+						defLaser(j, monster[i].mx - 1, monster[i].my + 1, monster[i].level, LEFT_LASER, 0.0, 0, true, true);
 					}
 					else { // RIGHT
-						//if (checkCrush(monster[i].mx + 1, monster[i].my + 1) == false) break;
-						defLaser(j, monster[i].mx + 1, monster[i].my + 1, monster[i].level, RIGHT_LASER, true, true);
+						defLaser(j, monster[i].mx + 1, monster[i].my + 1, monster[i].level, RIGHT_LASER, 0.0, 0, true, true);
 					}
 				}
 				break;
@@ -365,18 +358,16 @@ void createLaser() {
 				if (rand() % 100 + 1 > PROB_ATTACK_LEVEL_3) break;
 
 				if (flagLeft == true && flagRight == false) { // LEFT
-					//if (checkCrush(monster[i].mx - 1, monster[i].my + 1) == false) break;
-					defLaser(j, monster[i].mx - 1, monster[i].my + 1, monster[i].level, LEFT_LASER, true, true);
+					defLaser(j, monster[i].mx - 1, monster[i].my + 1, monster[i].level, LEFT_LASER, 0.0, 0, true, true);
 				}
 				else if (flagLeft == false && flagRight == true) { // RIGHT
-					//if (checkCrush(monster[i].mx + 1, monster[i].my + 1) == false) break;
-					defLaser(j, monster[i].mx + 1, monster[i].my + 1, monster[i].level, RIGHT_LASER, true, true);
+					defLaser(j, monster[i].mx + 1, monster[i].my + 1, monster[i].level, RIGHT_LASER, 0.0, 0, true, true);
 				}
 				else{
-					defLaser(j, monster[i].mx - 1, monster[i].my + 1, monster[i].level, LEFT_LASER, true, true);
+					defLaser(j, monster[i].mx - 1, monster[i].my + 1, monster[i].level, LEFT_LASER, 0.0, 0, true, true);
 					for (int k = 0; k < MAX_LASER; ++k) {
 						if (laser[k].flagShot == true) continue;
-						defLaser(k, monster[i].mx + 1, monster[i].my + 1, monster[i].level, RIGHT_LASER, true, true);
+						defLaser(k, monster[i].mx + 1, monster[i].my + 1, monster[i].level, RIGHT_LASER, 0.0, 0, true, true);
 						break;
 					}
 				}
@@ -392,32 +383,30 @@ void createLaser() {
 				if (rand() % 100 + 1 > PROB_ATTACK_LEVEL_4) break;
 
 				if (flagMid == true) {
-					defLaser(j, monster[i].mx, monster[i].my + 1, monster[i].level, MID_LASER, true, true);
+					defLaser(j, monster[i].mx, monster[i].my + 1, monster[i].level, MID_LASER, 0.0, 0, true, true);
 					
 				}
 				if (flagLeft == true && flagRight == false) { // LEFT
-					//if (checkCrush(monster[i].mx - 1, monster[i].my + 1) == false) break;
 					for (int k = 0; k < MAX_LASER; ++k) {
 						if (laser[k].flagShot == true) continue;
-						defLaser(k, monster[i].mx - 1, monster[i].my + 1, monster[i].level, LEFT_LASER, true, true);
+						defLaser(k, monster[i].mx - 1, monster[i].my + 1, monster[i].level, LEFT_LASER, 0.0, 0, true, true);
 						break;
 					}
 				}
 				else if (flagLeft == false && flagRight == true) { // RIGHT
-					//if (checkCrush(monster[i].mx + 1, monster[i].my + 1) == false) break;
 					for (int k = 0; k < MAX_LASER; ++k) {
 						if (laser[k].flagShot == true) continue;
-						defLaser(k, monster[i].mx + 1, monster[i].my + 1, monster[i].level, RIGHT_LASER, true, true);
+						defLaser(k, monster[i].mx + 1, monster[i].my + 1, monster[i].level, RIGHT_LASER, 0.0, 0, true, true);
 						break;
 					}
 				}
 				else {
 					for (int k = 0; k < MAX_LASER; ++k) {
 						if (laser[k].flagShot == true) continue;
-						defLaser(k, monster[i].mx - 1 , monster[i].my + 1, monster[i].level, LEFT_LASER, true, true);
+						defLaser(k, monster[i].mx - 1 , monster[i].my + 1, monster[i].level, LEFT_LASER, 0.0, 0, true, true);
 						for (int l = 0; l < MAX_LASER; ++l) {
 							if (laser[l].flagShot == true) continue;
-							defLaser(l, monster[i].mx + 1, monster[i].my + 1, monster[i].level, RIGHT_LASER, true, true);
+							defLaser(l, monster[i].mx + 1, monster[i].my + 1, monster[i].level, RIGHT_LASER, 0.0, 0, true, true);
 							break;
 						}
 						break;
@@ -435,18 +424,18 @@ void moveLaser() {
 		
 		switch (laser[i].direct) {
 		case MID_LASER:
-			if (laser[i].stackY == 0) continue;
-			--laser[i].stackY;
+			if (laser[i].stack == 0) continue;
 
+			laser[i].stack -= 1;
 			if (laser[i].flagFirst == true) { // 첫발인 경우
-				mainFrame[(int)laser[i].ly][(int)laser[i].lx] = LASER;
+				mainFrame[laser[i].ly][laser[i].lx] = LASER;
 				laser[i].flagFirst = false;
 				continue;
 			}
-			if (checkCrush((int)laser[i].lx, (int)laser[i].ly + 1) == true) {
-				mainFrame[(int)laser[i].ly][(int)laser[i].lx] = EMPTY;
+			if (checkCrush(laser[i].lx, laser[i].ly + 1) == true) {
+				mainFrame[laser[i].ly][laser[i].lx] = EMPTY;
 				++laser[i].ly;
-				mainFrame[(int)laser[i].ly][(int)laser[i].lx] = LASER;
+				mainFrame[laser[i].ly][laser[i].lx] = LASER;
 			}
 			else {
 				if (stage >= STAGE_1) {
@@ -457,25 +446,24 @@ void moveLaser() {
 			}
 			break;
 		case LEFT_LASER:
-			if (laser[i].stackX == 0 || laser[i].stackY == 0) continue;
-			--laser[i].stackX;
-			--laser[i].stackY;
+			if (laser[i].stack == 0) continue;
 
+			laser[i].stack -= 1;
 			if (laser[i].flagFirst == true) { // 첫발인 경우
-				mainFrame[(int)laser[i].ly][(int)laser[i].lx] = LASER;
+				mainFrame[laser[i].ly][laser[i].lx] = LASER;
 				laser[i].flagFirst = false;
 
-				if ((int)laser[i].lx == 1) laser[i].direct = RIGHT_LASER;
+				if (laser[i].lx == 1) laser[i].direct = RIGHT_LASER;
 				continue;
 			}
 
-			if (checkCrush((int)laser[i].lx - 1, (int)laser[i].ly + 1) == true) {
-				mainFrame[(int)laser[i].ly][(int)laser[i].lx] = EMPTY;
+			if (checkCrush(laser[i].lx - 1, laser[i].ly + 1) == true) {
+				mainFrame[laser[i].ly][laser[i].lx] = EMPTY;
 				--laser[i].lx;
 				++laser[i].ly;
-				mainFrame[(int)laser[i].ly][(int)laser[i].lx] = LASER;
+				mainFrame[laser[i].ly][laser[i].lx] = LASER;
 
-				if ((int)laser[i].lx == 1) laser[i].direct = RIGHT_LASER;
+				if (laser[i].lx == 1) laser[i].direct = RIGHT_LASER;
 			}
 			else {
 				if (stage >= STAGE_1) {
@@ -486,23 +474,22 @@ void moveLaser() {
 			}
 			break;
 		case RIGHT_LASER:
-			if (laser[i].stackX == 0 || laser[i].stackY == 0) continue;
-			--laser[i].stackX;
-			--laser[i].stackY;
+			if (laser[i].stack == 0) continue;
 
+			laser[i].stack -= 1;
 			if (laser[i].flagFirst == true) { // 첫발인 경우
-				mainFrame[(int)laser[i].ly][(int)laser[i].lx] = LASER;
+				mainFrame[laser[i].ly][laser[i].lx] = LASER;
 				laser[i].flagFirst = false;
-				if ((int)laser[i].lx == MAIN_X - 2) laser[i].direct = LEFT_LASER;
+				if (laser[i].lx == MAIN_X - 2) laser[i].direct = LEFT_LASER;
 				continue;
 			}
-			if (checkCrush((int)laser[i].lx + 1, (int)laser[i].ly + 1) == true) {
-				mainFrame[(int)laser[i].ly][(int)laser[i].lx] = EMPTY;
+			if (checkCrush(laser[i].lx + 1, laser[i].ly + 1) == true) {
+				mainFrame[laser[i].ly][laser[i].lx] = EMPTY;
 				++laser[i].lx;
 				++laser[i].ly;
-				mainFrame[(int)laser[i].ly][(int)laser[i].lx] = LASER;
+				mainFrame[laser[i].ly][laser[i].lx] = LASER;
 
-			if ((int)laser[i].lx == MAIN_X - 2) laser[i].direct = LEFT_LASER;
+			if (laser[i].lx == MAIN_X - 2) laser[i].direct = LEFT_LASER;
 
 			}
 			else {
@@ -518,39 +505,30 @@ void moveLaser() {
 }
 void resetLaser(int n) {
 	mainFrame[(int)laser[n].ly][(int)laser[n].lx] = EMPTY;
-	defLaser(n, 0, 0, 0, 0, false, true);
-	laser[n].gaugeX = 0;
-	laser[n].gaugeY = 0;
-	laser[n].stackX = 0;
-	laser[n].stackY = 0;
+	defLaser(n, 0, 0, 0, 0, 0.0, 0, false, true);
 }
 void convBlock(int n, int prob) {
 	if (rand() % 100 + 1 > prob)
 		resetLaser(n);
 	else {
 		mainFrame[(int)laser[n].ly][(int)laser[n].lx] = WALL;
-		defLaser(n, 0, 0, 0, 0, false, true);
+		defLaser(n, 0, 0, 0, 0, 0.0, 0, false, true);
 	}
 }
 
-
+// Function of GLaser
 void stackGaugeGLaser() {
 	for (int i = 0; i < MAX_GLASER; ++i) {
 		if (gLaser[i].flagSurv == false) continue;
 
-		gLaser[i].gaugeX += SPEED_GLASER * deltaTime / CLOCKS_PER_SEC;
-		gLaser[i].gaugeY += SPEED_GLASER * deltaTime / CLOCKS_PER_SEC;
-		if (gLaser[i].gaugeX >= 1) {
-			--gLaser[i].gaugeX;
-			++gLaser[i].stackX;
-		}
-		if (gLaser[i].gaugeY >= 1) {
-			--gLaser[i].gaugeY;
-			++gLaser[i].stackY;
+		gLaser[i].gauge += SPEED_GLASER * deltaTime / CLOCKS_PER_SEC;
+		if (gLaser[i].gauge >= 1) {
+			gLaser[i].gauge -= 1.0;
+			gLaser[i].stack += 1;
 		}
 	}
 }
-void defGLaser(int n, double gmx, double gmy, int flagSurv) {
+void defGLaser(int n, double gmx, double gmy, double gauge, int stack, bool flagSurv) {
 	gLaser[n].gmx = gmx;
 	gLaser[n].gmy = gmy;
 	gLaser[n].flagSurv = flagSurv;
@@ -561,8 +539,8 @@ void createGLaser() {
 
 		switch (stage) {
 		case STAGE_1:
-			defGLaser(i, 5, 5, true);
-			mainFrame[(int)gLaser[i].gmy][(int)gLaser[i].gmx] = GLASER;
+			defGLaser(i, 5, 5, 0.0, 0, true);
+			mainFrame[gLaser[i].gmy][gLaser[i].gmx] = GLASER;
 			break;
 		case STAGE_2:
 			break;
@@ -581,7 +559,7 @@ void moveGLaser() {
 	for (int i = 0; i < MAX_GLASER; ++i) {
 		if (gLaser[i].flagSurv == false) continue;
 		if (gLaser[i].gmx == player.px && gLaser[i].gmy == player.py) continue;
-		if (gLaser[i].stackX == 0 || gLaser[i].stackY == 0) continue;
+		if (gLaser[i].stack == 0) continue;
 
 		// x
 		if (getDegree((double)(player.px - gLaser[i].gmx), (double)(player.py - gLaser[i].gmy)) >= 22.5 * 13 ||
@@ -600,15 +578,65 @@ void moveGLaser() {
 		else tempy = 0;
 
 		if (checkCrush(gLaser[i].gmx + tempx, gLaser[i].gmy + tempy) == true) {
-			mainFrame[(int)gLaser[i].gmy][(int)gLaser[i].gmx] = EMPTY;
+			mainFrame[gLaser[i].gmy][gLaser[i].gmx] = EMPTY;
 			gLaser[i].gmx += tempx;
 			gLaser[i].gmy += tempy;
-			mainFrame[(int)gLaser[i].gmy][(int)gLaser[i].gmx] = GLASER;
-			--gLaser[i].stackX;
-			--gLaser[i].stackY;
+			mainFrame[gLaser[i].gmy][gLaser[i].gmx] = GLASER;
+			gLaser[i].stack -= 1;
 		}
 	}
 }
+
+// Function of Item
+void stackGaugeItem() {
+	for (int i = 0; i < MAX_ITEM; ++i) {
+		item[i].gauge += SPEED_ITEM * deltaTime / CLOCKS_PER_SEC;
+
+		if (item[i].gauge >= 1) {
+			item[i].gauge -= 1;
+			item[i].stack += 1;
+		}
+	}
+}
+void defItem(int n, int ix, int iy, int itemType, double gauge, int stack, bool flagSurv) {
+	item[n].ix = ix;
+	item[n].iy = iy;
+	item[n].gauge = gauge;
+	item[n].stack = stack;
+	item[n].flagSurv = flagSurv;
+}
+void spawnItem(int x, int y) {
+	int prob;
+	for (int i = 0; i < MAX_ITEM; ++i) {
+		if (item[i].flagSurv == true) continue;
+
+		if (rand() % 100 + 1 > PROB_SPAWN_ITEM) continue;
+
+		prob = rand() % 100 + 1;
+		if (prob <= PROB_SPAWN_ITEM_ULTI) {
+			defItem(i, x, y, ITEM_ULTI, 0.0, 0, true);
+			mainFrame[item[i].iy][item[i].ix] = ITEM_ULTI;
+		}
+		else if (prob <= PROB_SPAWN_ITEM_ARMOR) {
+			defItem(i, x, y, ITEM_ARMOR, 0.0, 0, true);
+			mainFrame[item[i].iy][item[i].ix] = ITEM_ARMOR;
+
+		}
+		else if (prob <= PROB_SPAWN_ITEM_HP) {
+			defItem(i, x, y, ITEM_HP, 0.0, 0, true);
+			mainFrame[item[i].iy][item[i].ix] = ITEM_HP;
+
+		}
+		else if (prob <= PROB_SPAWN_ITEM_BULLET) {
+			defItem(i, x, y, ITEM_BULLET, 0.0, 0, true);
+			mainFrame[item[i].iy][item[i].ix] = ITEM_BULLET;
+
+		}
+		break;
+	}
+}
+void moveItem();
+
 
 // Function of Frame
 void reset() {
@@ -621,7 +649,7 @@ void reset() {
 	// Player
 	defPlayer(MAIN_X / 2, MAIN_Y - 4, 100, 100, 0, 0);
 	key = 0;
-	stage = STAGE_5;
+	stage = STAGE_1;
 	score = 0;
 
 	// Bullet
@@ -714,6 +742,18 @@ void drawMF() {
 					break;
 				case PLAYER:
 					printf("△");
+					break;
+				case ITEM_HP:
+					printf("♡");
+					break;
+				case ITEM_ARMOR:
+					printf("♤");
+					break;
+				case ITEM_BULLET:
+					printf("♧");
+					break;
+				case ITEM_ULTI:
+					printf("☆");
 					break;
 				}
 			}
