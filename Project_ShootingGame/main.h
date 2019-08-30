@@ -115,7 +115,7 @@
 // ITEM
 #define MAX_ITEM 5
 #define SPEED_ITEM 1
-#define PROB_SPAWN_ITEM 10
+#define PROB_SPAWN_ITEM 100
 
 // PERCENTAGE : ULTI < ARMOR < HP < BULLET
 // THESE CONSTANTS ARE CUMULATIVE FREQUENCYS
@@ -241,6 +241,7 @@ typedef struct _Item{
 	int stack;
 	int ix;
 	int iy;
+	int type;
 
 	bool flagSurv;
 

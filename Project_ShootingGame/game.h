@@ -38,7 +38,7 @@ void moveGLaser();
 
 // Function of Item
 void stackGaugeItem();
-void defItem(int n, int ix, int iy, int flagOn);
+void defItem(int n, int ix, int iy, int type, double gauge, int stack, bool flagSurv);
 void spawnItem();
 void moveItem();
 

@@ -9,7 +9,7 @@ int main() {
 	resetMF();
 	resetCF();
 	createMonster();
-	createGLaser();
+	//createGLaser();
 	drawMF();
 	drawMap();
 
@@ -32,16 +32,16 @@ int main() {
 		
 
 		checkKbhit();
-		createLaser();
+		//createLaser();
 
 		//moveMonster();
 		while (frameTime > 0.0) {
 			deltaTime = min(frameTime, dt);
 
 			moveBullet();
-			moveGLaser();
-			moveLaser();
-
+			//moveGLaser();
+			//moveLaser();
+			moveItem();
 
 
 			if (countSurvMonster == 0) {
@@ -71,6 +71,7 @@ int main() {
 			t += deltaTime;
 			stackGaugeLaser();
 			stackGaugeGLaser();
+			stackGaugeItem();
 			drawMF();
 		}
 

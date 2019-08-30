@@ -598,9 +598,10 @@ void stackGaugeItem() {
 		}
 	}
 }
-void defItem(int n, int ix, int iy, int itemType, double gauge, int stack, bool flagSurv) {
+void defItem(int n, int ix, int iy, int type, double gauge, int stack, bool flagSurv) {
 	item[n].ix = ix;
 	item[n].iy = iy;
+	item[n].type = type;
 	item[n].gauge = gauge;
 	item[n].stack = stack;
 	item[n].flagSurv = flagSurv;
@@ -635,7 +636,19 @@ void spawnItem(int x, int y) {
 		break;
 	}
 }
-void moveItem();
+void moveItem() {
+	for (int i = 0; i < MAX_ITEM; ++i) {
+		if (item[i].flagSurv == false) continue;
+		if (item[i].stack == 0) continue;
+
+		item[i].stack -= 1;
+		if (checkCrush(item[i].ix, item[i].iy + 1) == true) {
+			mainFrame[item[i].iy][item[i].ix] = EMPTY;
+			item[i].iy += 1;
+			mainFrame[item[i].iy][item[i].ix] = item[i].type;
+		}
+	}
+}
 
 
 // Function of Frame
