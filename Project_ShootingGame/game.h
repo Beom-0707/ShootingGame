@@ -5,6 +5,7 @@
 //--------------------------------------
 
 int checkCrush(int cx, int cy);
+int checkGetItem();
 double getDegree(double x, double y);
 // Function of Player
 void defPlayer(int px, int py, int hp, int power, int armor, int ulti);
@@ -24,7 +25,7 @@ void drawBoss();
 
 // Function of Laser
 void stackGaugeLaser();
-void defLaser(int n, double lx, double ly, int level, int direct, int flagShot, int flagFirst);
+void defLaser(int n, int lx, int ly, int level, int direct, double gauge, int stack, bool flagShot, bool flagFirst);
 void createLaser();
 void moveLaser();
 void resetLaser(int n);
@@ -32,14 +33,14 @@ void convBlock(int n, int prob);
 
 // Function of GLaser
 void stackGaugeGLaser();
-void defGLaser(int n, double gmx, double gmy, int flagSurv);
+void defGLaser(int n, double gmx, double gmy, double gauge, int stack, bool flagSurv);
 void createGLaser();
 void moveGLaser();
 
 // Function of Item
 void stackGaugeItem();
 void defItem(int n, int ix, int iy, int type, double gauge, int stack, bool flagSurv);
-void spawnItem();
+void spawnItem(int x, int y);
 void moveItem();
 
 // Function of Frame

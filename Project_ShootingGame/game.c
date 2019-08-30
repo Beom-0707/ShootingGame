@@ -38,6 +38,31 @@ int checkHit(int n) {
 	}
 	return false;
 }
+int checkGetItem() {
+	for (int n = 0; n < MAX_ITEM; ++n)
+	if (item[n].ix == player.px && item[n].iy == player.py) {
+		switch (item[n].type) {
+		case ITEM_HP:
+			player.hp += 50;
+			break;
+		case ITEM_POWER:
+			player.power += 50;
+			break;
+		case ITEM_ARMOR:
+			player.armor += 25;
+			break;
+		case ITEM_BULLET: // Not Implemented Yet
+			//player.levelBullet += 1;
+			break;
+		case ITEM_ULTI:
+			player.ulti += 1;
+			break;
+		}
+		defItem(n, 0, 0, 0, 0.0, 0, false);
+		return true;
+	}
+	return false;
+}
 double getDegree(double x, double y) {
 	return (double)((long long)((atan2(y, x) * 180 / PI) + 360) % 360);
 }
@@ -62,6 +87,7 @@ void checkKbhit() {
 					mainFrame[player.py][player.px] = EMPTY;
 					--player.py;
 					mainFrame[player.py][player.px] = PLAYER;
+					checkGetItem();
 				}
 				break;
 			case DOWN:
@@ -69,6 +95,7 @@ void checkKbhit() {
 					mainFrame[player.py][player.px] = EMPTY;
 					++player.py;
 					mainFrame[player.py][player.px] = PLAYER;
+					checkGetItem();
 				}
 				break;
 			case LEFT:
@@ -76,6 +103,7 @@ void checkKbhit() {
 					mainFrame[player.py][player.px] = EMPTY;
 					--player.px;
 					mainFrame[player.py][player.px] = PLAYER;
+					checkGetItem();
 				}
 				break;
 			case RIGHT:
@@ -83,6 +111,7 @@ void checkKbhit() {
 					mainFrame[player.py][player.px] = EMPTY;
 					++player.px;
 					mainFrame[player.py][player.px] = PLAYER;
+					checkGetItem();
 				}
 				break;
 			}
@@ -623,6 +652,11 @@ void spawnItem(int x, int y) {
 			mainFrame[item[i].iy][item[i].ix] = ITEM_ARMOR;
 
 		}
+		else if (prob <= PROB_SPAWN_ITEM_POWER) {
+			defItem(i, x, y, ITEM_POWER, 0.0, 0, true);
+			mainFrame[item[i].iy][item[i].ix] = ITEM_POWER;
+
+		}
 		else if (prob <= PROB_SPAWN_ITEM_HP) {
 			defItem(i, x, y, ITEM_HP, 0.0, 0, true);
 			mainFrame[item[i].iy][item[i].ix] = ITEM_HP;
@@ -649,7 +683,6 @@ void moveItem() {
 		}
 	}
 }
-
 
 // Function of Frame
 void reset() {
@@ -758,6 +791,9 @@ void drawMF() {
 					break;
 				case ITEM_HP:
 					printf("¢½");
+					break;
+				case ITEM_POWER:
+					printf("¡Þ");
 					break;
 				case ITEM_ARMOR:
 					printf("¢»");

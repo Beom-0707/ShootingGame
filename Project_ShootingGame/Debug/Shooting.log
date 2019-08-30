@@ -1,20 +1,42 @@
-﻿  main.c
-c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\main.c(4): warning C4013: 'init'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\main.c(5): warning C4013: 'reset'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\main.c(9): warning C4013: 'resetMF'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\main.c(10): warning C4013: 'resetCF'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\main.c(11): warning C4013: 'createMonster'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\main.c(13): warning C4013: 'drawMF'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\main.c(14): warning C4013: 'drawMap'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\main.c(34): warning C4013: 'checkKbhit'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\main.c(41): warning C4013: 'moveBullet'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\main.c(44): warning C4013: 'moveItem'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\main.c(49): warning C4013: 'defMonster'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\main.c(51): warning C4013: 'defGLaser'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\main.c(55): warning C4013: 'result'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\main.c(63): warning C4013: 'createGLaser'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\main.c(67): warning C4013: 'pause'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\main.c(72): warning C4013: 'stackGaugeLaser'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\main.c(73): warning C4013: 'stackGaugeGLaser'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\main.c(74): warning C4013: 'stackGaugeItem'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+﻿  game.c
+c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\game.c(80): warning C4996: 'kbhit': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _kbhit. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\conio.h(459): note: 'kbhit' 선언을 참조하십시오.
+c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\game.c(81): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _getch. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\conio.h(453): note: 'getch' 선언을 참조하십시오.
+c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\game.c(83): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _getch. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\conio.h(453): note: 'getch' 선언을 참조하십시오.
+c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\game.c(305): warning C4013: 'gotoxy'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\game.c(561): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\game.c(562): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\game.c(609): warning C4244: '함수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\game.c(611): warning C4244: '+=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\game.c(612): warning C4244: '+=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\game.c(710): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\string.h(133): note: 'strcpy' 선언을 참조하십시오.
+c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\game.c(711): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\string.h(133): note: 'strcpy' 선언을 참조하십시오.
+c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\game.c(712): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\string.h(133): note: 'strcpy' 선언을 참조하십시오.
+c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\game.c(713): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\string.h(133): note: 'strcpy' 선언을 참조하십시오.
+c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\game.c(714): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\string.h(133): note: 'strcpy' 선언을 참조하십시오.
+c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\game.c(715): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\string.h(133): note: 'strcpy' 선언을 참조하십시오.
+c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\game.c(716): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\string.h(133): note: 'strcpy' 선언을 참조하십시오.
+c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\game.c(717): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\string.h(133): note: 'strcpy' 선언을 참조하십시오.
+c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\game.c(718): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\string.h(133): note: 'strcpy' 선언을 참조하십시오.
+c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\game.c(719): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\string.h(133): note: 'strcpy' 선언을 참조하십시오.
+c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\game.c(720): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\string.h(133): note: 'strcpy' 선언을 참조하십시오.
+c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\game.c(721): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\string.h(133): note: 'strcpy' 선언을 참조하십시오.
+c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\game.c(885): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _getch. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\conio.h(453): note: 'getch' 선언을 참조하십시오.
+c:\users\user\source\repos\beom-0707\shootinggame\project_shootinggame\game.c(904): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _getch. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\conio.h(453): note: 'getch' 선언을 참조하십시오.
   Shooting.vcxproj -> C:\Users\USER\source\repos\Beom-0707\ShootingGame\Project_ShootingGame\Debug\Shooting.exe

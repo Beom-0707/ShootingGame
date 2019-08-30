@@ -53,9 +53,10 @@
 #define MONSTER -1
 #define PLAYER -2
 #define ITEM_HP -3
-#define ITEM_ARMOR -4
-#define ITEM_BULLET -5
-#define ITEM_ULTI -6
+#define ITEM_POWER -4
+#define ITEM_ARMOR -5
+#define ITEM_BULLET -6
+#define ITEM_ULTI -7
 
 
 
@@ -119,8 +120,9 @@
 
 // PERCENTAGE : ULTI < ARMOR < HP < BULLET
 // THESE CONSTANTS ARE CUMULATIVE FREQUENCYS
-#define PROB_SPAWN_ITEM_BULLET 100 // 65
-#define PROB_SPAWN_ITEM_HP 35 // 20
+#define PROB_SPAWN_ITEM_BULLET 100 // 45
+#define PROB_SPAWN_ITEM_HP 55 // 20
+#define PROB_SPAWN_ITEM_POWER 35 // 20
 #define PROB_SPAWN_ITEM_ARMOR 15 // 10
 #define PROB_SPAWN_ITEM_ULTI 5 // 5
 
@@ -156,10 +158,12 @@ int key;
 typedef struct _Player {
 	int px;
 	int py;
+
 	int hp;
 	int power;
 	int armor;
 	int ulti;
+	int levelBullet;
 } Player;
 Player player;
 
